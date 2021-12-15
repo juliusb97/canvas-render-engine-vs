@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CanvasRenderEngineVS</title>
+		<script src="CanvasRenderEngineVS.js"></script>
+		<style>
+			html, body {
+				padding: 0;
+				margin: 0;
+				outline: 0;
+				border: 0;
+			}
+
+			canvas {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas>Your browser doesn't support canvas!</canvas>
+		<script>
+			let canvas = document.querySelector("canvas");
+
+			//Initialize with the canvas you want to render on
+			let revs = new REVS.RenderEngine(canvas);
+
+			//Make a new rectangle
+			let rectangle = new REVS.Rectangle(100, 200, 150, 100);
+
+			//Add it to the render pipeline
+			revs.addRenderable(rectangle);
+
+			//Add some text
+			let message = new REVS.Text(0, 0, "RenderEngineVS \n is awesome!", "Arial", 18);
+			message.align("center");
+
+			//Add a circle
+			let circleX = 600, circleY = 450;
+			let circle = new REVS.Circle(circleX, circleY, 75, false, true, REVS.Color.red);
+			
+			//Adding children makes the child move with its parent and also be rendered in front
+			//of the parent
+			circle.addChild(message);
+			revs.addRenderable(circle);
+
+			//You can add callbacks, that REVS will call before every render
+			revs.addCallback({
+				id: 1,
+				callback: function() {
+					this.x = circleX + Math.sin(revs.time / 100) * 100; //The REVS.time property gets
+					this.y = circleY + Math.cos(revs.time / 100) * 100; //incremented on every Render call
+				},
+				context: circle,
+				args: []
+			});
+
+			//CanvasRenderEngineVS lazy-renders by default, set eager to continously render
+			revs.setEager();
+
+			//Start execution
+			revs.Render();
+		</script>
+	</body>
+</html>

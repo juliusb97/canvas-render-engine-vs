@@ -1,0 +1,10 @@
+/node_modules
+/dist
+/output
+dist/index.js
+/public/build/
+/public/CanvasRenderEngineVS.js
+/public/CanvasRenderEngineVS.js.map
+/ts
+
+.DS_Store
