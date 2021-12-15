@@ -10,7 +10,7 @@
   "typings": "./dist/esm/CanvasRenderEngineVS.d.ts",
   "es2015": "./dist/esm/CanvasRenderEngine.js",
   "scripts": {
-    "watch-local": "tsc -w && rollup -c rollup.config.local.js",
+    "watch-local": "rollup -c rollup.config.local.js",
     "build": "rollup -c"
   },
   "author": "Julius Banke",
