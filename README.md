@@ -7,7 +7,7 @@ Also, there is more to come!
 
 I wrote REVS for another project of mine, that's where the 'VS' comes from - it stands for visual scripting.
 
-## But of course you can use it for everything, it is not connected in any way but the name to VSJS!
+**But of course you can use it for everything, it is not connected in any way but the name to VSJS!**
 
 ### Usage
 
