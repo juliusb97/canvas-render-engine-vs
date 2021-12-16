@@ -26,11 +26,11 @@ export default class Color {
 
 	color: RGB;
 
-	static black = new Color({ r: 0, g: 0, b: 0} as RGB);
-	static white = new Color({ r: 255, g: 255, b: 255} as RGB);
-	static red = new Color({ r: 255, g: 0, b: 0} as RGB);
-	static green = new Color({ r: 0, g: 255, b: 0} as RGB);
-	static blue = new Color({ r: 0, g: 0, b: 255} as RGB);
+	static Black = new Color({ r: 0, g: 0, b: 0} as RGB);
+	static White = new Color({ r: 255, g: 255, b: 255} as RGB);
+	static Red = new Color({ r: 255, g: 0, b: 0} as RGB);
+	static Green = new Color({ r: 0, g: 255, b: 0} as RGB);
+	static Blue = new Color({ r: 0, g: 0, b: 255} as RGB);
 
 	toCanvasColor(): string {
 		return `rgb(${this.color.r}, ${this.color.g}, ${this.color.b})`;

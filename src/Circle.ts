@@ -8,7 +8,7 @@ export default class Circle extends Renderable {
 		super(x, y);
 		this.radius = radius;
 
-		this.color = color ? color : Color.black;
+		this.color = color ? color : Color.Black;
 		this.fill = (fill === undefined || fill === null) ? true : fill;
 		this.stroke = (stroke === undefined || stroke === null) ? true : stroke;
 		this.strokeStyle = strokeStyle ? strokeStyle : "1px solid black";

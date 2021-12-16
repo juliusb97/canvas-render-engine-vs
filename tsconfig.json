@@ -1,7 +1,10 @@
 {
 	"compilerOptions": {
 		"target": "ES2015",
-		"outDir": "./public",
+		"outDir": "./dist",
+		"declarationDir": "./types",
+		"declaration": true,
+		"declarationMap": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true
