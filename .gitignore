@@ -6,5 +6,6 @@ dist/index.js
 /public/CanvasRenderEngineVS.js
 /public/CanvasRenderEngineVS.js.map
 /ts
+/tsbuild
 
 .DS_Store

@@ -1,8 +1,0 @@
-{
-	"name": "canvas-render-engine-vs",
-  	"version": "1.0.1",
-  	"description": "A render engine for HTML Canvas",
-	"license": "MIT",
-	"main": "CanvasRenderEngineVS.js",
-	"types": "./types/"
-}

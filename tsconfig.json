@@ -1,13 +1,11 @@
 {
 	"compilerOptions": {
-		"target": "ES2015",
+		"target": "ES5",
 		"outDir": "./dist",
-		"declarationDir": "./types",
+		"module": "commonjs",
+		"declarationDir": "./dist/",
+		"strict": true,
 		"declaration": true,
-		"declarationMap": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true
 	},
 	"include": ["src/**/*.ts"],
 }

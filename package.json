@@ -1,18 +1,12 @@
 {
   "name": "canvas-render-engine-vs",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "A render engine for HTML Canvas",
-  "browser": "dist/iife/CanvasRenderEngineVS.js",
-  "module": "dist/esm/CanvasRenderEngineVS.js",
-  "files": [
-    "dist/**/*"
-  ],
-  "types": "./dist/esm/CanvasRenderEngineVS.d.ts",
-  "typings": "./dist/esm/CanvasRenderEngineVS.d.ts",
-  "es2015": "./dist/esm/CanvasRenderEngine.js",
+  "main": "dist/CanvasRenderEngineVS.js",
+  "types": "dist/CanvasRenderEngineVS.d.ts",
   "scripts": {
     "watch-local": "rollup -c rollup.config.local.js",
-    "build": "rollup -c"
+    "build": "tsc"
   },
   "author": "Julius Banke",
   "license": "MIT",

@@ -10,7 +10,7 @@ export default class Rectangle extends Renderable {
 		this.width = width;
 		this.height = height;
 
-		this.color = color ? color : Color.black;
+		this.color = color ? color : Color.Black;
 
 		this.stroke = (stroke == undefined || stroke == null) ? true : stroke;
 		this.fill = (fill == undefined || fill == null) ? true : fill;

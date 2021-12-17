@@ -10,7 +10,7 @@ export default class Text extends Renderable {
 		this.font = font ? font : "monospace";
 		this.fontSize = fontSize ? fontSize : 12;
 
-		this.color = color ? color : Color.black;
+		this.color = color ? color : Color.Black;
 		this.fill = (fill === undefined || fill === null) ? true : fill;
 		this.stroke = (stroke === undefined || stroke === null) ? true : stroke;
 		this.strokeStyle = strokeStyle ? strokeStyle : "1px solid black";
@@ -26,7 +26,7 @@ export default class Text extends Renderable {
 	font: string;
 	fontSize: number;
 	lineHeight: number;
-	hAlign: "left" | "center";
+	hAlign: "left" | "center" = "left";
 
 	render(renderEngine: RenderEngine): void {
 		if(this.stroke)

@@ -1,5 +1,7 @@
 # Canvas Render Engine VS - REVS
 
+**THIS IS UNDER CONSTRUCTION**
+
 REVS is a simple render engine for HTML in TypeScript.
 
 It has a layer system, some basic objects, a hierarchy, callback functionality, and lots more.
