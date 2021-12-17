@@ -13,8 +13,4 @@ I wrote REVS for another project of mine, that's where the 'VS' comes from - it 
 
 ### Usage
 
-To build, just run `npm run build-local`.
-This will build a bundled JavaScript file in the `public` directory.
-(The package build is not ready yet)
-
-You can find an example and some basic info on how to use it in `public/index.html`.
+**Example project:** [Example on Github](https://github.com/silver1bear/canvas-render-engine-vs-example-project)
