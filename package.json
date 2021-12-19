@@ -5,7 +5,6 @@
   "main": "dist/CanvasRenderEngineVS.js",
   "types": "dist/CanvasRenderEngineVS.d.ts",
   "scripts": {
-    "watch-local": "rollup -c rollup.config.local.js",
     "build": "tsc"
   },
   "author": "Julius Banke",

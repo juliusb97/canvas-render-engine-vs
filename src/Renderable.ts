@@ -1,15 +1,22 @@
 import RenderEngine from "./RenderEngine";
 import RenderContext from "./RenderContext";
+import Color from "./Color";
 
 export default class Renderable {
 
-	constructor(x: number, y: number) {
+	constructor(x: number, y: number, width?: number, height?: number) {
 		this.x = x;
 		this.y = y;
+		this.width = width ? width : 0;
+		this.height = height ? height : 0;
 		this.children = [];
 		this.layer = 0;
+		this.color = Color.Black;
 	}
 
+	width: number;
+	height: number;
+	color: Color;
 	x: number;
 	y: number;
 	children: Renderable[];

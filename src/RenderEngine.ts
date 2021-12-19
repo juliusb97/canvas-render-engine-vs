@@ -1,5 +1,9 @@
+import Clickable from "./Clickable";
+import Hoverable from "./Hoverable";
+import Movable from "./Movable";
 import Renderable from "./Renderable";
 import RenderContext from "./RenderContext";
+import Selectable from "./Selectable";
 
 export default class RenderEngine {
 
@@ -18,6 +22,10 @@ export default class RenderEngine {
 			this.cx.fillStyle = this.fillColor;
 			this.cx.fillRect(0, 0, this.cvDimensions.width, this.cvDimensions.height);
 		}
+
+		this.addMouseDownEventListener();
+		this.addMouseMoveEventListener();
+		this.addMouseUpEventListener();
 	}
 
 	cv: HTMLCanvasElement;
@@ -25,11 +33,24 @@ export default class RenderEngine {
 	cvDimensions = { width: 0, height: 0};
 	lazy: boolean;
 
+	static layers: Map<string, number> = new Map([
+		["base", 1],
+		["interact", 100]
+	]);
 	renderables: Renderable[] = [];
 	fillFunction: Function;
 	fillColor = "#222";
 	time: number;
 
+	clickables: Clickable[] = [];
+	hoverables: Hoverable[] = [];
+	selectables: Selectable[] = [];
+	movables: Movable[] = [];
+
+	moved?: Movable;
+	selected?: Selectable;
+
+	//TODO refactor as ES6 Map
 	callbacks: Callback[] = [{ id: "default", context: this, args: [], callback: () => {}}];
 
 	private calculateDimensions() {
@@ -94,6 +115,84 @@ export default class RenderEngine {
 
 	setLazy(): void {
 		this.lazy = true;
+	}
+
+	addMouseDownEventListener(): void {
+		this.cv.addEventListener("mousedown", (e: MouseEvent) => {
+
+			//TODO this is non-standard
+			let x: number = (e as any).layerX;
+			let y: number = (e as any).layerY;
+
+			if(e.buttons === 2) {
+				for(let cli of this.clickables) {
+					if(cli.isPointInside(x, y)) {
+						cli.onRightClick(e);
+					}
+				}
+				return;
+			}
+
+			let previousSelected = this.selected;
+			let foundAnyOne = false;
+
+			//Handle clicks
+			for(let cli of this.clickables) {
+				if(cli.isPointInside(x, y)) {
+					if(cli instanceof Movable)
+						(cli as Movable).onClick(e);
+					else cli.onClick(e);
+				}
+			}
+
+			//Handle selections
+			for(let sel of this.selectables) {
+				if(sel.isPointInside((e as any).layerX, (e as any).layerY)) {
+					sel.onSelect(e);
+					this.selected = sel;
+					foundAnyOne = true;
+				}
+			}
+
+			//Handle moves
+			for(let mov of this.movables) {
+				if(mov.isPointInside(x, y)) {
+					this.moved = mov;
+				}
+			}
+
+			if(!foundAnyOne) {
+				previousSelected?.onDeselect(e);
+				this.selected = undefined;
+			}
+		});
+	}
+
+	addMouseMoveEventListener(): void {
+		this.cv.addEventListener("mousemove", (e: MouseEvent) => {
+
+			//TODO this is non-standard
+			let x: number = (e as any).layerX;
+			let y: number = (e as any).layerY;
+
+			this.moved?.onMove(x, y);
+
+			//Handle hoverables
+			for(let hov of this.hoverables) {
+				if(hov.isPointInside((e as any).layerX, (e as any).layerY)) {
+					hov.onHover(e);
+				} else {
+					hov.onHoverLeave(e);
+				}
+			}
+		});
+	}
+
+	addMouseUpEventListener(): void {
+		this.cv.addEventListener("mouseup", (e: MouseEvent) => {
+			this.moved?.onMoveStop();
+			this.moved = undefined;
+		});
 	}
 
 }
